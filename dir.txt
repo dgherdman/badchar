@@ -1,0 +1,52 @@
+-rwxr-xr-x   3 root     bin            3 Jan  5 11:25  /sas/Lev1/Sasdata/foo?.txt
+drwxr-xr-x  30 root     sys           42 Jan  5 11:27 .
+drwxr-xr-x  25 root     sys           28 Mar  1 10:34 ..
+lrwxrwxrwx   1 root     root          10 Jan  5 11:27 adm -> ../var/adm
+drwxr-xr-x   3 root     sys            3 Jan  5 11:25 apache2
+drwxr-xr-x   3 root     sys            3 Jan  5 11:25 apr
+drwxr-xr-x   3 root     sys            3 Jan  5 11:25 apr-util
+drwxr-xr-x   4 root     bin         1202 Jan  5 11:27 bin
+drwxr-xr-x   3 root     bin            4 Jan  5 11:27 ccs
+drwxr-xr-x   7 root     bin            7 Jan  5 11:25 ddu
+drwxr-xr-x   8 root     bin            8 Jan  5 11:25 demo
+lrwxrwxrwx   1 root     root          16 Jan  5 11:27 dict -> ./share/lib/dict
+drwxr-xr-x   3 root     bin            3 Jan  5 11:25 dtrace
+drwxr-xr-x   3 root     sys            3 Jan  5 11:25 etc
+drwxr-xr-x   2 root     bin            2 Oct  6  2015 games
+drwxr-xr-x   5 root     bin            5 Jan  5 11:25 gnu
+drwxr-xr-x  66 root     bin          156 Jan  5 11:27 include
+lrwxrwxrwx   1 root     root          15 Jan  5 11:27 java -> jdk/jdk1.8.0_60
+drwxr-xr-x   3 root     bin            5 Jan  5 11:27 jdk
+drwxr-xr-x  13 root     sys           13 Jan  5 11:25 kernel
+drwxr-xr-x   2 root     bin            3 Jan  5 11:26 kvm
+drwxr-xr-x 107 root     bin         1409 Jan  5 11:27 lib
+lrwxrwxrwx   1 root     root          11 Jan  5 11:27 mail -> ../var/mail
+lrwxrwxrwx   1 root     root          11 Jan  5 11:27 man -> ./share/man
+drwxr-xr-x   3 root     sys            3 Jan  5 11:25 mysql
+lrwxrwxrwx   1 root     root           3 Jan  5 11:27 openwin -> X11
+drwxr-xr-x   5 root     bin            8 Jan  5 11:27 perl5
+drwxr-xr-x   4 root     sys            4 Jan  5 11:25 platform
+lrwxrwxrwx   1 root     root          15 Jan  5 11:27 preserve -> ../var/preserve
+drwxr-xr-x   3 root     bin            3 Jan  5 11:25 proc
+lrwxrwxrwx   1 root     root          15 Jan  5 11:27 pub -> ./share/lib/pub
+drwxr-xr-x   4 root     bin            5 Jan  5 11:25 sadm
+drwxr-xr-x   4 root     bin          481 Jan  5 11:27 sbin
+drwxr-xr-x   5 root     bin            9 Jan  5 11:27 sfw
+drwxr-xr-x  60 root     sys           60 Jan  5 11:25 share
+lrwxrwxrwx   1 root     root          12 Jan  5 11:27 spool -> ../var/spool
+lrwxrwxrwx   1 root     root          11 Jan  5 11:27 src -> ./share/src
+drwxr-xr-x   5 root     bin            5 Jan  5 11:25 sunos
+lrwxrwxrwx   1 root     root          10 Jan  5 11:27 tmp -> ../var/tmp
+drwxr-xr-x   5 root     bin            5 Jan  5 11:25 X11
+lrwxrwxrwx   1 root     root           3 Jan  5 11:27 X11R6 -> X11
+drwxr-xr-x   4 root     bin            4 Jan  5 11:25 xpg4
+drwxr-xr-x   3 root     bin            3 Jan  5 11:25 xpg6
+-rwxr-xr-x   3 root     bin            3 Jan  5 11:25  /sas/Lev1/Sasdata/foo.txt
+-rwxr-xr-x   3 root     bin            3 Jan  5 11:25  /sas/Lev1/Sasdata/foo.txt
+-rwxr-xr-x   3 root     bin            3 Jan  5 11:25  /sas/Lev1/Sasdata/foo?.txt
+-rwxr-xr-x   3 root     bin            3 Jan  5 2017  /sas/Lev1/Sasdata/foo.txt
+-rwxr-xr-x   3 root     bin            30 Jan  5 2020  /sas/Lev1/Sasdata/foo
+-rwxr-xr-x   3 root     bin            30 Jan  5 2020  /sas/Lev1/Sasdata/foo with space.txt
+-rwxr-xr-x   3 root     bin            30 Jan  5 2020  /sas/Lev1/Sasdata/foo.txt
+-rwxr-xr-x   3 root     bin            30 Jan  5 2020  /sas/Lev1/Sasdata/foo>.txt
+-rwxr-xr-x   3 root     bin            30 Jan  5 2020  /sas/Lev1/Sasdata/foo\.txt
