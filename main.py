@@ -19,6 +19,7 @@
 #   Usage: badchar.py <Path-of-File-to-Process> <Path-to-output-File>
 #
 import sys
+import glob
 
 
 def containsAny(str,set):
@@ -29,7 +30,7 @@ def containsAny(str,set):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-""""
+    """
     # process the command line agruments (if any)
     if len(sys.argv) > 2:
         # Assume first argument is the path to the filename
@@ -39,7 +40,7 @@ if __name__ == '__main__':
     else:
         print("Usage: badchar.py  <input-file-path> <output-file-path>")
         sys.exit("Incorrect number of arguments")
-"""
+    """
 
 
 
