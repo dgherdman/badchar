@@ -29,7 +29,7 @@ def containsAny(str,set):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-
+""""
     # process the command line agruments (if any)
     if len(sys.argv) > 2:
         # Assume first argument is the path to the filename
@@ -39,7 +39,7 @@ if __name__ == '__main__':
     else:
         print("Usage: badchar.py  <input-file-path> <output-file-path>")
         sys.exit("Incorrect number of arguments")
-
+"""
 
 
 
@@ -48,44 +48,52 @@ if __name__ == '__main__':
 
     illegal_dirname = {'<', '>', ':', '\\', '|', '?', '*'}
 
+ # fudge for now as there is a problem with CLI parameter regex
+    filesRE = "/Users/david.herdman/documents/DirectoryListings/files/*"
 
-#    dirfile = "j:\commercial\Customer assignments\DWP\Development\dir.txt"
-    dirfile = "dir.txt"
-    dirlist = open(dirfile, "r")
+    
+	
+    for listfile_name in glob.glob(filesRE):
+        # Give a status message
+        print("Processing file %s" % listfile_name)
+		
 
-    for line in dirlist:
-        elements=line.split()
+        dirlist = open(listfile_name, "r")
 
-        # process the elements in a line depending on what type of filesystem
-        # object we are processing. This is denoted by the first character of
-        # the posix umask field as listed below
-        #
-        #       First Character     meaning
-        #           -               regular file
-        #           d               directory
-        #           l               soft link
-        #           c               character special file (probably unlikely for this application)
-        #
-        objecttype = elements[0][0]
+        for line in dirlist:
+            elements=line.split()
 
-        # There may be white space in the file & Directory names, so we can't rely on
-        # an element number to locate these. Instead, we scan forwards for the full path
-        #  & backwards for the filename.
-        full_path = line[line.find(r'/'):]
-        print("full path %s" % (full_path,))
-        file_name = full_path[full_path.rfind(r'/')+1:]
-        print("File name is %s" % (file_name,))
+            # process the elements in a line depending on what type of filesystem
+            # object we are processing. This is denoted by the first character of
+            # the posix umask field as listed below
+            #
+            #       First Character     meaning
+            #           -               regular file
+            #           d               directory
+            #           l               soft link
+            #           c               character special file (probably unlikely for this application)
+            #
+            objecttype = elements[0][0]
 
-        if objecttype == "-":
+            # There may be white space in the file & Directory names, so we can't rely on
+            # an element number to locate these. Instead, we scan forwards for the full path
+            #  & backwards for the filename.
+            full_path = line[line.find(r'/'):]
+            print("full path %s" % (full_path,))
+            file_name = full_path[full_path.rfind(r'/')+1:]
+            print("File name is %s" % (file_name,))
+
+            if objecttype == "-":
             # it's a regular file
-            if containsAny(full_path,illegal_filename):
-                print("file %s contains illegal characters" % (full_path))
+                if containsAny(full_path,illegal_filename):
+                    print("file %s contains illegal characters" % (full_path))
 
-        if objecttype == "d":
-            # it's a directory
-            print(elements[8], " is a directory")
-        if objecttype == "l":
-            # it's a symbolic link
-            print(elements[8], " is a link to ",elements[10] )
+            if objecttype == "d":
+                # it's a directory
+                print(elements[8], " is a directory")
+            if objecttype == "l":
+                # it's a symbolic link
+                print(elements[8], " is a link to ",elements[10] )
 
-
+        # End of processing individual file
+	# End of processing Glob	
