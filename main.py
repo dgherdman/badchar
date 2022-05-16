@@ -19,6 +19,7 @@
 #   Usage: badchar.py <Path-of-File-to-Process> <Path-to-output-File>
 #
 import sys
+import os
 import glob
 
 
@@ -52,7 +53,7 @@ if __name__ == '__main__':
  # fudge for now as there is a problem with CLI parameter regex
     filesRE = "/Users/david.herdman/documents/DirectoryListings/files/*"
 
-    
+    cumulative_badfile_count = 0
 	
     for listfile_name in glob.glob(filesRE):
         # Give a status message
@@ -60,7 +61,14 @@ if __name__ == '__main__':
 		
 
         dirlist = open(listfile_name, "r")
-
+		
+		# Formulate & open bad file names file
+		file_name = full_path[full_path.rfind(r'/')+1:]
+        outfile_name = os.path.splitext(file_name)[0] + "_illegal.txt"
+		print("Output File name is %s" % (outfile_name,))
+        outfile = open(listfile_name, "w")
+		bad_file_count = 0
+		
         for line in dirlist:
             elements=line.split()
 
@@ -80,14 +88,13 @@ if __name__ == '__main__':
             # an element number to locate these. Instead, we scan forwards for the full path
             #  & backwards for the filename.
             full_path = line[line.find(r'/'):]
-            print("full path %s" % (full_path,))
             file_name = full_path[full_path.rfind(r'/')+1:]
-            print("File name is %s" % (file_name,))
 
             if objecttype == "-":
             # it's a regular file
                 if containsAny(full_path,illegal_filename):
-                    print("file %s contains illegal characters" % (full_path))
+				    bad_file_count += 1
+                    outfile.write(full_path)
 
             if objecttype == "d":
                 # it's a directory
@@ -97,4 +104,10 @@ if __name__ == '__main__':
                 print(elements[8], " is a link to ",elements[10] )
 
         # End of processing individual file
-	# End of processing Glob	
+		outfile.close()
+		print("Bad files %d" % bad_file_count)
+		cumulative_badfile_count += bad_file_count
+		bad_file_count = 0
+	# End of processing Glob
+
+	print("Total number of bad files %d" & cumulative_badfile_count)
