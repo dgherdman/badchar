@@ -2,14 +2,14 @@
 drwxr-xr-x  30 root     sys           42 Jan  5 11:27 .
 drwxr-xr-x  25 root     sys           28 Mar  1 10:34 ..
 lrwxrwxrwx   1 root     root          10 Jan  5 11:27 adm -> ../var/adm
-drwxr-xr-x   3 root     sys            3 Jan  5 11:25 apache2
-drwxr-xr-x   3 root     sys            3 Jan  5 11:25 apr
-drwxr-xr-x   3 root     sys            3 Jan  5 11:25 apr-util
+drwxr-xr-x   3 root     sys            3 Jan  5 11:25 /bin/ap>ache2
+drwxr-xr-x   3 root     sys            3 Jan  5 11:25 /binapr
+drwxr-xr-x   3 root     sys            3 Jan  5 11:25 /apr-util
 drwxr-xr-x   4 root     bin         1202 Jan  5 11:27 bin
 drwxr-xr-x   3 root     bin            4 Jan  5 11:27 ccs
 drwxr-xr-x   7 root     bin            7 Jan  5 11:25 ddu
-drwxr-xr-x   8 root     bin            8 Jan  5 11:25 demo
-lrwxrwxrwx   1 root     root          16 Jan  5 11:27 dict -> ./share/lib/dict
+drwxr-xr-x   8 root     bin            8 Jan  5 11:25 demo?
+lrwxrwxrwx   1 root     root          16 Jan  5 11:27 dict? -> ./share/lib/dict
 drwxr-xr-x   3 root     bin            3 Jan  5 11:25 dtrace
 drwxr-xr-x   3 root     sys            3 Jan  5 11:25 etc
 drwxr-xr-x   2 root     bin            2 Oct  6  2015 games

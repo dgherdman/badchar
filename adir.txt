@@ -1,0 +1,10 @@
+-rwxr-xr-x   3 root     bin            3 Jan  5 11:25  /sas/Lev1/Sasdata/foo?.txt
+-rwxr-xr-x   3 root     bin            3 Jan  5 11:25  /sas/Lev1/Sasdata/foo.txt
+-rwxr-xr-x   3 root     bin            3 Jan  5 11:25  /sas/Lev1/Sasdata/foo>.txt
+-rwxr-xr-x   3 root     bin            3 Jan  5 11:25  /sas/Lev1/Sasdata/foo<.txt
+-rwxr-xr-x   3 root     bin            3 Jan  5 2017  /sas/Lev1/Sasdata/?foo.txt
+-rwxr-xr-x   3 root     bin            30 Jan  5 2020  /sas/Lev1/Sasdata/foo
+-rwxr-xr-x   3 root     bin            30 Jan  5 2020  /sas/Lev1/Sasdata/foo with space.txt
+-rwxr-xr-x   3 root     bin            30 Jan  5 2020  /sas/Lev1/Sasdata/foo.txt
+-rwxr-xr-x   3 root     bin            30 Jan  5 2020  /sas/Lev1/Sasdata/foo>.txt
+-rwxr-xr-x   3 root     bin            30 Jan  5 2020  /sas/Lev1/Sasdata/foo\.txt

@@ -31,17 +31,18 @@ def containsAny(str, set):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    """
+    
     # process the command line agruments (if any)
+    xxx = len(sys.argv)
     if len(sys.argv) > 2:
         # Assume first argument is the path to the filename
         # silently ignore any other arguments
-        print("File to process is %s" % (sys.argv[1]))
+        print("Directory to process is %s" % (sys.argv[1]))
         print("Output File is %s" % (sys.argv[2]))
     else:
         print("Usage: badchar.py  <input-file-path> <output-file-path>")
         sys.exit("Incorrect number of arguments")
-    """
+
 
     # The illegal characters
     illegal_filename = {'<', '>', ':', '\\', '/', '|', r'?', '*'}
@@ -49,11 +50,14 @@ if __name__ == '__main__':
     illegal_dirname = {'<', '>', ':', '\\', '|', '?', '*'}
 
     # fudge for now as there is a problem with CLI parameter regex
-    filesRE = "/Users/david.herdman/documents/DirectoryListings/files/*"
+    # filesRE = "/Users/david.herdman/documents/DirectoryListings/files/*"
+    filesRE = sys.argv[1]
 
     # Set the ouput directory
-    out_dir = "/Users/david.herdman/documents/DirectoryListings/results/"
+    # out_dir = "/Users/david.herdman/documents/DirectoryListings/results/"
+    out_dir = sys.argv[2]
     cumulative_badfile_count = 0
+    cumulative_baddir_count = 0
 	
     for listfile_name in glob.glob(filesRE):
         # Give a status message
@@ -68,7 +72,10 @@ if __name__ == '__main__':
         outfile_name = os.path.join(out_dir,outfile_name)
         print("Output File name is %s" % (outfile_name,))
         outfile = open(outfile_name, "w")
+        
+        # initialise "per file" counters
         bad_file_count = 0
+        bad_dir_count = 0
         line_count = 0
 		
         for line in dirlist:
@@ -96,13 +103,17 @@ if __name__ == '__main__':
 
             if objecttype == "-":
             # it's a regular file
-                if containsAny(full_path,illegal_filename):
+                if containsAny(file_name,illegal_filename):
                     bad_file_count += 1
                     outfile.write(line)
 
             if objecttype == "d":
                 # it's a directory
                 print(elements[8], " is a directory")
+                if containsAny(full_path,illegal_dirname):
+                    bad_dir_count += 1
+                    outfile.write(line)
+
             if objecttype == "l":
                 # it's a symbolic link
                 print(elements[8], " is a link to ",elements[10] )
@@ -111,7 +122,11 @@ if __name__ == '__main__':
         outfile.close()
         print("Bad files %d" % bad_file_count)
         cumulative_badfile_count += bad_file_count
+        cumulative_baddir_count += bad_dir_count
         bad_file_count = 0
+        bad_dir_count = 0
 	# End of processing Glob
 
+
     print("Total number of bad files %d" % cumulative_badfile_count)
+    print("Total number of bad directories %d" % cumulative_baddir_count)
