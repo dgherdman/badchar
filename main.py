@@ -23,7 +23,7 @@ import os
 import glob
 
 
-def containsAny(str,set):
+def containsAny(str, set):
     for c in set:
         if c in str: return True
     return False
@@ -43,16 +43,16 @@ if __name__ == '__main__':
         sys.exit("Incorrect number of arguments")
     """
 
-
-
     # The illegal characters
-    illegal_filename ={'<','>',':','\\','/','|',r'?','*'}
+    illegal_filename = {'<', '>', ':', '\\', '/', '|', r'?', '*'}
 
     illegal_dirname = {'<', '>', ':', '\\', '|', '?', '*'}
 
- # fudge for now as there is a problem with CLI parameter regex
+    # fudge for now as there is a problem with CLI parameter regex
     filesRE = "/Users/david.herdman/documents/DirectoryListings/files/*"
 
+    # Set the ouput directory
+    out_dir = "/Users/david.herdman/documents/DirectoryListings/results/"
     cumulative_badfile_count = 0
 	
     for listfile_name in glob.glob(filesRE):
@@ -60,16 +60,19 @@ if __name__ == '__main__':
         print("Processing file %s" % listfile_name)
 		
 
-        dirlist = open(listfile_name, "r")
+        dirlist = open(listfile_name, "r", encoding="latin-1")
 		
 		# Formulate & open bad file names file
-		file_name = full_path[full_path.rfind(r'/')+1:]
-        outfile_name = os.path.splitext(file_name)[0] + "_illegal.txt"
-		print("Output File name is %s" % (outfile_name,))
-        outfile = open(listfile_name, "w")
-		bad_file_count = 0
+        outfile_name = os.path.basename(listfile_name)
+        outfile_name = os.path.splitext(outfile_name)[0] + "_illegal.txt"
+        outfile_name = os.path.join(out_dir,outfile_name)
+        print("Output File name is %s" % (outfile_name,))
+        outfile = open(outfile_name, "w")
+        bad_file_count = 0
+        line_count = 0
 		
         for line in dirlist:
+            line_count += 1
             elements=line.split()
 
             # process the elements in a line depending on what type of filesystem
@@ -88,13 +91,14 @@ if __name__ == '__main__':
             # an element number to locate these. Instead, we scan forwards for the full path
             #  & backwards for the filename.
             full_path = line[line.find(r'/'):]
+            full_path = full_path.rstrip()
             file_name = full_path[full_path.rfind(r'/')+1:]
 
             if objecttype == "-":
             # it's a regular file
                 if containsAny(full_path,illegal_filename):
-				    bad_file_count += 1
-                    outfile.write(full_path)
+                    bad_file_count += 1
+                    outfile.write(line)
 
             if objecttype == "d":
                 # it's a directory
@@ -104,10 +108,10 @@ if __name__ == '__main__':
                 print(elements[8], " is a link to ",elements[10] )
 
         # End of processing individual file
-		outfile.close()
-		print("Bad files %d" % bad_file_count)
-		cumulative_badfile_count += bad_file_count
-		bad_file_count = 0
+        outfile.close()
+        print("Bad files %d" % bad_file_count)
+        cumulative_badfile_count += bad_file_count
+        bad_file_count = 0
 	# End of processing Glob
 
-	print("Total number of bad files %d" & cumulative_badfile_count)
+    print("Total number of bad files %d" % cumulative_badfile_count)
