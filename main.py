@@ -33,12 +33,21 @@ def containsAny(str, set):
 if __name__ == '__main__':
     
     # process the command line agruments (if any)
-    xxx = len(sys.argv)
+ 
     if len(sys.argv) > 2:
         # Assume first argument is the path to the filename
         # silently ignore any other arguments
-        print("Directory to process is %s" % (sys.argv[1]))
-        print("Output File is %s" % (sys.argv[2]))
+
+        # Fix the Wildcard expression because in UNIX like OSes
+        # an argument of the form /dir/subdir/* will be expanded by 
+        # the shell and pass all files that match as arguments, which
+        # is not what we want. Therefore we escape the RE element of the
+        # command line argument and fix it up here
+        filesRE = sys.argv[1].replace("\\*",r"*")
+        print("------------- Starting Badchar run ---------------")
+        print("Directory to process is %s" % filesRE)
+        out_dir = sys.argv[2]
+        print("Output Directory is %s" % out_dir)
     else:
         print("Usage: badchar.py  <input-file-path> <output-file-path>")
         sys.exit("Incorrect number of arguments")
@@ -49,15 +58,14 @@ if __name__ == '__main__':
 
     illegal_dirname = {'<', '>', ':', '\\', '|', '?', '*'}
 
-    # fudge for now as there is a problem with CLI parameter regex
-    # filesRE = "/Users/david.herdman/documents/DirectoryListings/files/*"
-    filesRE = sys.argv[1]
-
-    # Set the ouput directory
-    # out_dir = "/Users/david.herdman/documents/DirectoryListings/results/"
-    out_dir = sys.argv[2]
+    # Initilaise some global counters
     cumulative_badfile_count = 0
     cumulative_baddir_count = 0
+
+    # Formulate & open report file
+    repfile_name = os.path.join(out_dir,"SasEnvBad.txt")
+    print("Report File name is %s" % repfile_name)
+    repfile = open(repfile_name, "w")
 	
     for listfile_name in glob.glob(filesRE):
         # Give a status message
@@ -120,13 +128,20 @@ if __name__ == '__main__':
 
         # End of processing individual file
         outfile.close()
-        print("Bad files %d" % bad_file_count)
+
+        # Write stats to the report file
+        repfile.write("Processed file %s\n" % listfile_name)
+        repfile.write("Bad files %d\n" % bad_file_count)
+        repfile.write("Bad Directories %d\n" % bad_dir_count)
+        repfile.write("\n")
         cumulative_badfile_count += bad_file_count
         cumulative_baddir_count += bad_dir_count
         bad_file_count = 0
         bad_dir_count = 0
 	# End of processing Glob
 
-
-    print("Total number of bad files %d" % cumulative_badfile_count)
-    print("Total number of bad directories %d" % cumulative_baddir_count)
+    repfile.write("-----------Summary----------------\n")
+    repfile.write("Total number of bad files %d\n" % cumulative_badfile_count)
+    repfile.write("Total number of bad directories %d\n" % cumulative_baddir_count)
+    repfile.close()
+    print("Badchar reporting run finished")

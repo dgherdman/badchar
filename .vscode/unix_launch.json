@@ -9,8 +9,8 @@
             "type": "python",
             "request": "launch",
             "args": [ 
-                "/Users/david.herdman/documents/DirectoryListings/files/\\*",
-                "/Users/david.herdman/documents/DirectoryListings/results/"
+                "/Users/david.herdman/documents/DirectoryListings/files/*",
+                "/Users/david.herdman/documents/DirectoryListings/results/""
             ],
             "program": "${file}",
             "console": "integratedTerminal",
